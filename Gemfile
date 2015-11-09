@@ -16,7 +16,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'awesome_print'
-  gem 'byebug'
+  # gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
