@@ -4,12 +4,11 @@ app.directive('aMaze', function() {
   return {
     restrict: 'E',
     scope: {
-      grid: '@grid',
+      grid: '='
     },
     link: function(scope, element, attrs) {
-      scope.$watch('grid', function() {
-        if (!scope.grid) return;
-        var grid = JSON.parse(scope.grid);
+      scope.$watch('grid', function(grid) {
+        if (!grid) return;
         var html = '';
         for (var y = 0; y < grid.length; y++) {
           html += '<div class="cf">';
