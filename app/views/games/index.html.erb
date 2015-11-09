@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="jumbotron">
+    <h2>A-Maze!</h2>
+    <p>Bored of nowadays amazing games? Watch us play a maze for ya' :)</p>
+    <small>In green the starting point, cyan the end, red the walls, yellow fully explored path and blue the A* open paths.</small>
+  </div>
+
+  <div id="game" ng-controller="gamesCtrl" >
+
+    <div class="alert alert-danger" ng-cloak ng-show="error">
+      {{error}}
+    </div>
+
+    <form name="newGame" novalidate ng-submit="createGame()">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+      <div class="row">
+
+        <div class="form-group">
+          <label class="col-sm-1 control-label">Width</label>
+          <input class="col-sm-1" name="maze[width]" type="text" ng-model="maze.width">
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-1 control-label">Height</label>
+          <input class="col-sm-1" name="maze[height]" type="text" ng-model="maze.height">
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-1 control-label">StartX</label>
+          <input class="col-sm-1" name="game[start_x]" type="text" ng-model="game.start_x">
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-1 control-label">StartY</label>
+          <input class="col-sm-1" name="game[start_y]" type="text" ng-model="game.start_y">
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-1 control-label">EndX</label>
+          <input class="col-sm-1" name="game[end_x]" type="text" ng-model="game.end_x">
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-1 control-label">EndY</label>
+          <input class="col-sm-1" name="game[end_y]" type="text" ng-model="game.end_y">
+        </div>
+
+      </div>
+
+
+      <div class="row" style="text-align: center; margin-top: 15px;">
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">Create game</button>
+          <button type="button" class="btn btn-default" ng-click="createGame(true)">Create game with random positions</button>
+        </div>
+      </div>
+
+    </form>
+
+    <a-maze grid="{{grid}}">
+
+  </div> <!-- gamesCtrl -->
+
+</div>

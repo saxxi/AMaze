@@ -1,0 +1,33 @@
+.cf { zoom: 1; }
+.cf:before,
+.cf:after { content: ""; display: table; }
+.cf:after { clear: both; }
+
+.container .jumbotron,
+.container-fluid .jumbotron {
+  padding: 10px 30px;
+  margin-bottom: 10px;
+}
+
+.maze-grid {
+  background: #333;
+  padding: 10px 10px;
+
+  .cell {
+  }
+}
+
+.cell {
+  float: left;
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  padding: 0;
+
+  &.elem0 { }
+  &.elem1 { background: red; }
+  &.elem2 { background: blue; }
+  &.elem3 { background: yellow; }
+  &.elem4 { background: green; }
+  &.elem5 { background: cyan; }
+}
