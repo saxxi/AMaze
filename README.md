@@ -7,5 +7,5 @@ Simple Rails application to solve a maze.
 ```
 $ bundle install
 $ bundle exec rails
-$ bundle exec guard
+$ bundle exec guard # Hit ENTER to run all tests
 ```
