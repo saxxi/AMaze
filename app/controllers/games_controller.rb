@@ -9,7 +9,13 @@ class GamesController < ApplicationController
       maze_params[:height].to_i
     ).grid
 
-    solver = AStar.new(grid, game_params)
+    solver = AStar.new(
+      grid,
+      start_x: game_params[:start_x],
+      start_y: game_params[:start_y],
+      end_x: game_params[:end_x],
+      end_y: game_params[:end_y]
+    )
     solver.solve!
 
     render json: { grid: grid }

@@ -30,7 +30,7 @@ app.controller('gamesCtrl', function($scope, $http) {
 
   $scope.game = {
     start_x: 1, start_y: 1,
-    end_x: 40, end_y: 20,
+    end_x: 39, end_y: 19,
   };
 
   $scope.createGame = function (withDefaults) {

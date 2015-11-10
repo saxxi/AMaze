@@ -1,12 +1,12 @@
 class AStar < Solver
 
-  # G cost = distance from starting point
-  # H cost = distance from node
+  # G cost = Manhattan distance from starting point
+  # H cost = Distance from node
   # F = G + H
 
   def solve!
     @found = false
-    @points = Array.new(@grid.length * 2 + 1) { Array.new(@grid.first.length * 2 + 1) }
+    @points = Array.new(@height * 2 + 1) { Array.new(@width * 2 + 1) }
     @positions = {}
     search @start_x, @start_y
     @grid[@start_y][@start_x] = ELEMENTS[:start]
@@ -14,7 +14,6 @@ class AStar < Solver
   end
 
   def search(x, y)
-  # 40.times do
     @grid[y][x] = ELEMENTS[:fully_explored]
     @positions.delete [x, y]
     return if finished? x, y
@@ -34,18 +33,32 @@ class AStar < Solver
 
     position = @positions.to_a.sort{ |a, b| a[1] <=> b[1] }.first[0]
     search position[0], position[1]
-    # x, y = position[0], position[1]
-  # end
   end
 
   private
 
   def distance_from(x, y)
-    Math.sqrt((@end_y - y)**2 + (@end_x - x)**2)
+    walls_hv, walls_vh = 0, 0
+
+    h_start = [@end_x, x].min
+    h_end = (@end_x - x).abs + h_start
+    (h_start..h_end).each do |elem|
+      walls_hv += @grid[y][elem]      == 1 ? 10 : 1
+      walls_vh += @grid[@end_y][elem] == 1 ? 10 : 1
+    end
+
+    v_start = [@end_y, y].min
+    v_end = (@end_y - y).abs + v_start
+    (v_start..v_end).each do |elem|
+      walls_hv += @grid[elem][@end_x] == 1 ? 10 : 1
+      walls_vh += @grid[elem][x]      == 1 ? 10 : 1
+    end
+
+    [walls_hv, walls_vh].min
   end
 
   def finished?(x, y)
-    distance_from(x, y) == 0
+    y == @end_y && x == @end_x
   end
 
 end
